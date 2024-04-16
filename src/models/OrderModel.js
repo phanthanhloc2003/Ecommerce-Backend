@@ -18,7 +18,21 @@ const orderSchema = new mongoose.Schema(
     id: {
       type: String,
     },
-   
+    sale: {
+      type: Number,
+    },
+    results:{
+      type: Number,
+    },
+    totalOrder: {
+      type: Number,
+    },
+    DeliveryCharges: {
+      type: Number,
+    },
+    discount: {
+      type: Number,
+    },
   },
   {
     timestamps: true,

@@ -26,6 +26,56 @@ class OrderController {
       });
     }
   }
+  async getAllOrder(req, res) {
+  const idOrder =  req.userInfo.id
+  if(!idOrder){
+    return res.status(400).json({
+      status:"error",
+      message: "no tokens"
+    })
+  }
+  try {
+    const orderAll = await Order.find({
+      id: idOrder
+    })
+    return res.status(200).json({
+      status: "succsess",
+      data: orderAll
+    })
+
+   
+  } catch (error) {
+    return res.status(500).json({
+      status: "error",
+      message: error.message,
+    });
+  }
+  
+  }
+  async getDetailOrder(req, res) {
+    const idOrder = req.params.id;
+    if (!idOrder) {
+      return res.status(400).json({
+        status: "error",
+        message: "no id",
+      });
+    }
+
+    try {
+      const details = await Order.findById({
+        _id: idOrder,
+      });
+      return res.status(200).json({
+        status: "succsess",
+        data: details,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: "error",
+        message: error.message,
+      });
+    }
+  }
 }
 
 module.exports = new OrderController();
